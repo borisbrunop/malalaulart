@@ -8,9 +8,11 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
-import Header from "./header"
+
 import "./layout.css"
+import Background from "../images/Background.PNG"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -23,27 +25,35 @@ const Layout = ({ children }) => {
     }
   `)
 
+  const theme = createMuiTheme({
+    palette: {
+      green: {
+        main: "#C6DDCD", // This is an main color of all
+      },
+      blue: {
+        main: "#C8D6D7", // secondary color for buttons etc
+      },
+      pink: {
+        main: "#FFD3CE", // secondary color for buttons etc
+      },
+      yellow: {
+        main: "#FEDBB1", // secondary color for buttons etc
+      },
+      white: {
+        main: "#FEF3DD", // secondary color for buttons etc
+      },
+    },
+    //fontFamily: font // for the font family to whole application
+  });
+
+
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
+    <ThemeProvider theme={theme}>
+    <div>
         <main>{children}</main>
-        <footer
-          style={{
-            marginTop: `2rem`,
-          }}
-        >
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
-      </div>
+    </div>
+    </ThemeProvider>
     </>
   )
 }

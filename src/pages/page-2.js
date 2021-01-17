@@ -3,13 +3,21 @@ import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-
+import fondo2 from "../images/fondo2.jpg"
+import Image from "../components/image"
 const SecondPage = () => (
   <Layout>
-    <SEO title="Page two" />
-    <h1>Hi from the second page</h1>
-    <p>Welcome to page 2</p>
-    <Link to="/">Go back to the homepage</Link>
+    <SEO title="Pedido" />
+    <div
+      style={{
+      position: `absolute`,
+      height: `100%`,
+      width: `100%`,
+      }}
+    >
+      <Link to="/">back</Link>
+      <Image/>
+    </div>
   </Layout>
 )
 
