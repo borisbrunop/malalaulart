@@ -5,19 +5,15 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import fondo2 from "../images/fondo2.jpg"
 import Image from "../components/image"
+import "./custom.css"
+
 const SecondPage = () => (
   <Layout>
     <SEO title="Pedido" />
-    <div
-      style={{
-      position: `absolute`,
-      height: `100%`,
-      width: `100%`,
-      }}
-    >
+      <Image fileName="fondo3.PNG"/>
       <Link to="/">back</Link>
-      <Image/>
-    </div>
+
+
   </Layout>
 )
 

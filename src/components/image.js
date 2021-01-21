@@ -16,27 +16,42 @@ import BackgroundImage from 'gatsby-background-image'
  * - `useStaticQuery`: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-const Image = () => {
-  const data = useStaticQuery(graphql`
-  query MyQuery {
-    file(relativePath: {eq: "fondo2.jpg"}) {
-      childImageSharp {
-        fluid {
-          aspectRatio
-          base64
-          src
-          srcSet
+const Image = ({fileName , className}) => {
+  
+  const { allImageSharp } = useStaticQuery(graphql`
+    query {
+      allImageSharp {
+        nodes {
+          fluid {
+            originalName
+            ...GatsbyImageSharpFluid_withWebp
+          }
         }
       }
     }
-  }
   `)
+  
+  const fluid = allImageSharp.nodes.find(n => n.fluid.originalName === fileName)
+    .fluid
+    console.log(fluid)
 
-  if (!data?.file?.childImageSharp?.fluid) {
-    return <div>Picture not found</div>
-  }
-
-  return <Img fluid={data.file.childImageSharp.fluid} />
+  return (
+    <BackgroundImage
+      Tag="section"
+      className={className}
+      fluid={fluid}
+    >
+    </BackgroundImage>
+  )
 }
 
-export default Image
+const StyledBackgroundSection = styled(Image)`
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover !important;
+  position: absolute !important;
+`
+
+export default StyledBackgroundSection

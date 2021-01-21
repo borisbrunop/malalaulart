@@ -49,11 +49,9 @@ const Layout = ({ children }) => {
 
   return (
     <>
-    <ThemeProvider theme={theme}>
-    <div>
-        <main>{children}</main>
+    <div style={{height: '100%'}}>
+        <main style={{height: '100%'}}>{children}</main>
     </div>
-    </ThemeProvider>
     </>
   )
 }

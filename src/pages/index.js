@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "gatsby"
 import "./custom.css"
 
@@ -13,45 +13,54 @@ import Image from "../components/image"
 const useStyles = makeStyles((theme) => ({
   imgResponsive: {
     height: `25em`,
-    marginLeft: `4em`,
+    margin: 'auto',
     [theme.breakpoints.down('sm')]: {
-      height: `15em`,
-      marginLeft: `1em`,    
-      marginTop: `2em`,    
+      height: `15em`,   
     },
   },
+  // logoResponsive: {
+  //   height: '200px',
+  //   [theme.breakpoints.down('sm')]: {
+  //     height: `100px !important`,   
+  //   },
+  // },
 }));
 
 const IndexPage = () =>{ 
+  const [show, setShow] = useState(true)
+  const [clase, setClase] = useState("")
   const classes = useStyles();
+
+
+  const handleFade = (e) => {
+    setShow(!show)
+  }
+  const handleAnimate = (e) => {
+    setClase("animate")
+  }
   return (
   <Layout>
     <SEO title="Malalaulart" />
-    <div
-      style={{
-      position: `absolute`,
-      height: `100%`,
-      width: `100%`,
-      backgroundImage: `url(${Background})`, 
-      backgroundPosition: `center`,
-      backgroundRepeat: `no-repeat`,
-      backgroundSize: `cover`,
-      }}>
-      <div className="d-flex justify-content-center px-0 align-items-center h-100 w-100">
-        <Fade
-          left
-          duration={1000}
-          delay={1000}
-          cascade
-          distance="50px"
-        >
-          <img src={Logo} className={classes.imgResponsive}></img>
-        </Fade>
-        <div>
-
-        </div>
-      </div>
-    <Link className="linkp" to="/page-2/">Formulario</Link> <br />
+    <Image fileName='Background.PNG'/>
+      <div className={classes.fullSize + " w-100 m-0"}>
+          <div className={classes.fullSize + " d-flex justify-content-center px-0 align-items-center"}>
+          <Fade
+            left
+            duration={600}
+            // className={classes.logoResponsive}
+            cascade
+            distance="50px"
+            when={show}
+          >
+            <img src={Logo} height="80" width="80"></img>
+          </Fade>
+          </div>
+          <p style={{ cursor: 'pointer'}} onClick={handleFade}>Click</p>
+          <p style={{ cursor: 'pointer'}} onClick={handleAnimate}>Click up</p>
+          <div className={"prueba " + clase}>
+          <Link className="linkp" style={{ textDecoration: 'none', color: 'white'}} to="/page-2/">𝔹𝔼𝕃𝕀𝔼𝕍𝔼</Link> <br />
+          </div>
+          <Image fileName='fondo3.PNG'/>
       </div>
   </Layout>
 )}
