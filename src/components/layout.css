@@ -20,6 +20,10 @@ body {
   -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
   font-feature-settings: "kern", "liga", "clig", "calt";
   height: 100%;
+  background-color: #ffeae7;
+}
+#___gatsby{
+  height: 100%;
 }
 #gatsby-focus-wrapper{
   height: 100%;

@@ -50,8 +50,10 @@ const StyledBackgroundSection = styled(Image)`
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover !important;
+  background-size: cover;
   position: absolute !important;
+  z-index: "-1";
+  background-color: #ffeae7;
 `
 
 export default StyledBackgroundSection
