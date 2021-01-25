@@ -43,15 +43,22 @@ const Layout = ({ children }) => {
         main: "#FEF3DD", // secondary color for buttons etc
       },
     },
-    //fontFamily: font // for the font family to whole application
+    typography: {
+      // In Chinese and Japanese the characters are usually larger,
+      // so a smaller fontsize may be appropriate.
+      fontSize: 10,
+      fontFamily: `'Courier Prime', monospace` // for the font family to whole application
+    },
   });
 
 
   return (
     <>
+    <ThemeProvider theme={theme}>
     <div style={{height: '100%'}}>
         <main style={{height: '100%'}}>{children}</main>
     </div>
+    </ThemeProvider>
     </>
   )
 }

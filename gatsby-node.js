@@ -17,7 +17,7 @@ actions.setWebpackConfig({
     module: {
     rules: [
         {
-            test: /\.(png|jpg|jpe?g|gif)$/i,
+            test: /\.(png|jpg|jpe?g|gif|svg)$/i,
             use: [
                 {
                 loader: 'file-loader',

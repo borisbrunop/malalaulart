@@ -27,20 +27,28 @@ import ilus11 from "../images/ilus11.PNG"
 import ilus12 from "../images/ilus12.PNG"
 import ilus13 from "../images/ilus13.PNG"
 import { useHistory } from "react-router-dom";
+import InstagramIcon from '@material-ui/icons/Instagram';
+import IconButton from '@material-ui/core/IconButton';
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import LazyLoad from 'react-lazyload';
+
+
+
 
 
 const useStyles = makeStyles((theme) => ({
   imgResponsive: {
     height: `25em`,
     margin: 'auto',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       height: `15em`,   
     },
   },
   logoResponsive: {
     height: '400px',
     zIndex: '1',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       height: `300px`,   
     },
   },
@@ -48,32 +56,24 @@ const useStyles = makeStyles((theme) => ({
     height: "100%"
   },
   divbuttonForm: {
-    width: "300px",
+    width: "70%",
     height: "100px",
     // backgroundColor: "#FDDBB1",
     // cursor: "pointer",
     marginBottom: "20%",
     marginTop: "20%",
     [theme.breakpoints.down('sm')]: {
-      marginBottom: "40%",
-      marginTop: "40%",
+      width: "100%",
+      height: "70px"
     },
     borderRadius: "20px",
-  },
-  pButtonForm: {
-    color: "black",
-    marginBottom: "0px",
-    fontSize: "20px",
-    [theme.breakpoints.down('sm')]: {
-      fontSize: `15px`,   
-    },
   },
   venezuelaPhone:{
     position: "absolute",
     left: "10px",
     top:"10px",
     fontSize: "15px",
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       fontSize: `10px`,   
     },
   },
@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
     right: "10px",
     top:"10px",
     fontSize: "15px",
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       fontSize: `10px`,
       left: "10px",
       top:"25px",   
@@ -94,32 +94,33 @@ const useStyles = makeStyles((theme) => ({
     bottom:"10px",
     marginBottom: "0px",
     fontSize: "15px",
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       fontSize: `10px`,   
+    },
+  },
+  pFooter:{
+    marginBottom: "20px", 
+    marginTop: "20px",
+    [theme.breakpoints.down('xs')]: {
+      fontSize: `10px`,   
+    },
+  },
+  social: {
+    color: "#addbb2",
+    fontSize: "40px",
+    [theme.breakpoints.down('xs')]: {
+      fontSize: `30px`,   
     },
   },
 }));
 
 const IndexPage = () =>{ 
-  const [show, setShow] = useState(true)
-  const [clase, setClase] = useState("")
   const classes = useStyles();
-  const ilustrations = {
-      ilus1, ilus2, ilus3, ilus4,ilus5,ilus6, ilus7, ilus8 ,ilus9 ,ilus10, ilus11, ilus12, ilus13
-    }
   const ilust = [
-    {img: ilus1},
-    {img: ilus2}, 
-    {img: ilus3}, 
-    {img: ilus4},
-    {img: ilus5},
-    {img: ilus6},
-    {img: ilus7},
-    {img: ilus8},
-    {img: ilus9},
-    {img: ilus10},
-    {img: ilus11},
-    {img: ilus13}
+    {img: ilus1},{img: ilus2},{img: ilus3}, 
+    {img: ilus4},{img: ilus5},{img: ilus6},
+    {img: ilus7},{img: ilus8},{img: ilus9},
+    {img: ilus10},{img: ilus11},{img: ilus13}
 ]
 
 const history = useHistory();
@@ -175,41 +176,56 @@ const history = useHistory();
           <p className={classes.byMarialaura}>by Marialaura Matteo</p>
           </Fade>
           </div>
-          
-          <div className={classes.fullSize + "d-flex justify-content-center row m-3 m-sm-4 m-md-5"}>
-          <Fade
-            left
-            duration={1000}
-            delay={800}
-            distance="100px"
-          >
-            {/* <div onClick={(e)=>{history.push("/page-2/");}} className={classes.divbuttonForm + " col-12 col-md-10 d-flex justify-content-center align-items-center"}>
-              <p className={classes.pButtonForm}>Realiza tu pedido aqui</p>
-            </div> */}
-            {/* <button className={classes.divbuttonForm + " button col-12 col-md-10 d-flex justify-content-center align-items-center"}>
-              Fancy Button
-              <div className="__horizontal"></div>
-              <div className="__vertical"></div>
-            </button> */}
-            <button className={classes.divbuttonForm + " button slide col-12 col-md-10 d-flex justify-content-center align-items-center"}>Realiza tu pedido aqui</button>
-          </Fade>
-            {ilust.map((ilustra) => (
+          <div className={classes.fullSize + " d-flex justify-content-center row m-3 m-sm-4 m-md-5"}>
+            <div className=" mt-5 col-12 d-flex justify-content-center align-items-center">
             <Fade
             left
             duration={1000}
-            delay={800}
-            distance="100px"
+            distance="80px"
           >
-            <div className="col-6 col-md-4 col-lg-3 p-0">
-              <Zoom>
-                <img style={{width: "100%", marginBottom: "0px"}} src={ilustra.img}></img>
-              </Zoom>
-            </div>
+              <IconButton onClick={(e) =>  window.open("https://www.instagram.com/malalaulart/")} aria-label="instagram">
+                  <InstagramIcon className={classes.social}/>
+              </IconButton>
           </Fade>
-            ))
-            }
+          <Fade
+            bottom
+            duration={1000}
+            distance="80px"
+          >
+              <IconButton onClick={(e) =>  window.open("https://wa.me/+584123405104")} aria-label="instagram">
+                  <WhatsAppIcon className={classes.social}/>
+              </IconButton>
+          </Fade>
+          <Fade
+            right
+            duration={1000}
+            distance="80px"
+          >
+              <IconButton onClick={(e) =>  window.open("mailto:malalaulart@gmail", '_self')} aria-label="instagram">
+                  <MailOutlineIcon className={classes.social}/>
+              </IconButton>
+          </Fade>
+            </div>
+            <div className="col-12 col-md-10 d-flex justify-content-center align-items-center">
+              <Link className={classes.divbuttonForm + " slide d-flex justify-content-center align-items-center"} to="/page-2/">Realiza tu pedido aqui</Link> <br />
+            </div>
+              {ilust.map((ilustra) => (
+                <Fade
+                  left
+                  duration={1000}
+                  distance="100px"
+                >
+                  <div className="col-6 col-md-4 col-lg-3 p-0">
+                    <LazyLoad>
+                    <Zoom>
+                      <img style={{width: "100%", marginBottom: "0px"}} src={ilustra.img}></img>
+                    </Zoom>
+                    </LazyLoad>
+                  </div>
+                </Fade>
+              ))}
+            <p className={classes.pFooter}>♥ LLeva un Recuerdo especial siempre contigo ♥</p>
           </div>
-          <Link to="/page-2/">𝔹𝔼𝕃𝕀𝔼𝕍𝔼</Link> <br />
       </div>
   </Layout>
 )}

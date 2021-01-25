@@ -15,22 +15,33 @@
 p{
     font-family: 'Courier Prime', monospace;
 }
+.MuiFormControlLabel-root{
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+label{
+	margin-bottom: 0px;
+}
 
 @media (max-width: 959.95px){ 
 .logo {
     height: 100px;
 }}
 
-	.slide:hover,
-	.slide:focus {
-	box-shadow: inset 6.5em 0 0 0 var(--hover);
+	.slide:hover{
+	box-shadow: inset 6.5em 0 0 0 #f7be78 45deg;
+	text-decoration: none;
+	background: #f7be78;
+	color: white;
 	}
 
-	button {  
-		color: #FDDBB1;
+	.slide {  
+		color: #f7be78;
 		transition: 0.25s;
 		background: none;
 		border: 2px solid;
+		text-decoration: none;
 	}
 	/* }.button:hover,
 		button:focus { 
