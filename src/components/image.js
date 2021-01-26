@@ -33,7 +33,6 @@ const Image = ({fileName , className}) => {
   
   const fluid = allImageSharp.nodes.find(n => n.fluid.originalName === fileName)
     .fluid
-    console.log(fluid)
 
   return (
     <BackgroundImage
