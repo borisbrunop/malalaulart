@@ -1,9 +1,8 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import fondo2 from "../images/fondo2.jpg"
 import Image from "../components/image"
 import "./custom.css"
 import { withStyles , makeStyles } from '@material-ui/core/styles';
@@ -19,6 +18,8 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormLabel from '@material-ui/core/FormLabel';
 import Tooltip from '@material-ui/core/Tooltip';
 import Swal from 'sweetalert2'
+import { TramRounded } from "@material-ui/icons"
+import Loading from "../components/loading.js"
 
 const useStyles = makeStyles((theme) => ({
   divForm: {
@@ -78,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Courier Prime !important',
   },
   labelForm: {
-    marginLeft: "30px",
+    marginLeft: "20px",
     fontSize: "15px", 
     marginBottom: "0px",
     [theme.breakpoints.down('xs')]: {
@@ -157,12 +158,12 @@ const SecondPage = () => {
   const [cuadro, setCuadro] = useState(false)
   const [porta, setPorta] = useState(false)
   const [quiero, setQuiero] = useState("")
-  const [fondo, setFondo] = useState(null)
+  const [fondo, setFondo] = useState("")
   const [personas, setPersonas] = useState(0)
   const [animales, setAnimales] = useState(0)
   const [prevPerson, setPrevPerson] = useState("")
   const [prevAnimal, setPrevAnimal] = useState("")
-  const [error, setError] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [total, setTotal] = useState(0)
 
   const textoFondo = `El costo del fondo ilustrado puede varias 
@@ -929,117 +930,109 @@ const SecondPage = () => {
     setIlustD(!ilustD) 
   }
 
+  const alerta = (link) => {
+    Swal.fire({
+      title: 'Informacion Importante',
+      text: "El precio puede tener una variacion, por favor enviar foto a ilustrar despues de este mensaje, gracias ❤️",
+      icon: 'success',
+      showCancelButton: false,
+      cconfirmButtonColor: '#addbb2',
+      confirmButtonText: 'Enviar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.open(link)
+      }
+    })
+  }
+
+  const alertaErrorCasillas = (e) => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Epaa...',
+      text: 'Rellena esas casillas 😪 😫',
+      showConfirmButton: false,
+    })
+  }
+
+
+  const alertaErrorPA = (e) => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Epaa...',
+      text: 'Selecciona personas o animales 🙄 😑',
+      showConfirmButton: false,
+    })
+  }
+
+  const alertaErrorInteres = (e) => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Epaa...',
+      text: 'Seleccione en que esta interesado 👀 😤',
+      showConfirmButton: false,
+    })
+  }
+
 
   const handleEnviar = (e) => {
-    let name = nombre.split(" ")
-    let nombreApellido = `${name[0]}${name[1]}`
     let link = ``
     if(quiero === ""){
-      Swal.fire({
-        icon: 'error',
-        title: 'Epaa...',
-        text: 'Seleccion en que esta interesado ♥',
-      })
+      alertaErrorInteres()
     }
     if(quiero === "ILUST"){
-      if(nombre && apellido && quiero && plano && personas || animales && fondo && texto && total){
-        link = `https://api.whatsapp.com/send?phone=584123405104&text=Holaaa%20♥♥♥♥♥♥♥♥♥♥♥%20Mi%20nombre%20es%20${nombreApellido}%20,%20vivo%20en%20${apellido}%20.%20Quisiera%20pedirte%20una%20${quiero}%20con%20un%20plano%20de%20${plano}%20,%20con%20${personas}%20personas%20,%20con%20${animales}%20animales%20,%20con%20${fondo}%20,%20con%20${texto}%20texto%20y%20tendria%20un%20estimado%20de%20${total}$%20♥♥`
-        Swal.fire({
-          title: 'Informacion Importante',
-          text: "El precio puede tener una variacion, por favor enviar foto a ilustrar despues de este mensaje ♥ gracias ♥",
-          icon: 'success',
-          showCancelButton: false,
-          cconfirmButtonColor: '#addbb2',
-          confirmButtonText: 'Enviar'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            window.open(link)
-          }
-        })
+      if(nombre && apellido && quiero && plano && fondo != "" && texto != "" && personas || animales ){
+        link = `https://api.whatsapp.com/send?phone=584123405104&text=Holaaa%20♥♥♥♥♥♥♥♥♥♥♥%20Mi%20nombre%20es%20${nombre}%20,%20vivo%20en%20${apellido}%20.%20Quisiera%20pedirte%20una%20${quiero}%20con%20un%20plano%20de%20${plano}%20,%20con%20${personas}%20personas%20,%20con%20${animales}%20animales%20,%20con%20${fondo}%20,%20con%20${texto}%20texto%20y%20tendria%20un%20estimado%20de%20${total}$%20♥♥`
+        alerta(link)
       }else{
         if(personas === 0 && animales === 0){
-          Swal.fire({
-            icon: 'error',
-            title: 'Epaa...',
-            text: 'Selecciona personas o animales ♥',
-          })
+          alertaErrorPA()
         }else{
-          Swal.fire({
-            icon: 'error',
-            title: 'Epaa...',
-            text: 'Rellena esas casillas ♥',
-          })
+          alertaErrorCasillas()
         }
       }
     }
     if(quiero === "CUADRO"){
-      if(nombre && apellido && quiero && plano && personas || animales && fondo && texto && total && tamano){
-        link = `https://api.whatsapp.com/send?phone=584123405104&text=Holaaa%20♥♥♥♥♥♥♥♥♥♥♥%20Mi%20nombre%20es%20${nombreApellido}%20,%20vivo%20en%20${apellido}%20.%20Quisiera%20pedirte%20una%20${quiero}%20con%20un%20plano%20de%20${plano}%20,%20con%20${personas}%20personas%20,%20con%20${animales}%20animales%20,%20con%20${fondo}%20,%20con%20${texto}%20texto%20,%20el%20material%20seria%20de%20MDF%20,%20con%20un%20tamaño%20de%20${tamano}%20y%20tendria%20un%20estimado%20de%20${total}$%20♥♥`
-        Swal.fire({
-          title: 'Informacion Importante',
-          text: "El precio puede tener una pequeña variacion, por favor enviar foto a ilustrar despues de este mensaje ♥ gracias ♥",
-          icon: 'success',
-          showCancelButton: false,
-          cconfirmButtonColor: '#addbb2',
-          confirmButtonText: 'Enviar'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            window.open(link)
-          }
-        })
+      if(nombre && apellido && quiero && plano && fondo != "" && texto != "" && tamano && personas || animales ){
+        link = `https://api.whatsapp.com/send?phone=584123405104&text=Holaaa%20♥♥♥♥♥♥♥♥♥♥♥%20Mi%20nombre%20es%20${nombre}%20,%20vivo%20en%20${apellido}%20.%20Quisiera%20pedirte%20una%20${quiero}%20con%20un%20plano%20de%20${plano}%20,%20con%20${personas}%20personas%20,%20con%20${animales}%20animales%20,%20con%20${fondo}%20,%20con%20${texto}%20texto%20,%20el%20material%20seria%20de%20MDF%20,%20con%20un%20tamaño%20de%20${tamano}%20y%20tendria%20un%20estimado%20de%20${total}$%20♥♥`
+        alerta(link)
       }else{
         if(personas === 0 && animales === 0){
-          Swal.fire({
-            icon: 'error',
-            title: 'Epaa...',
-            text: 'Selecciona personas o animales ♥',
-          })
+          alertaErrorPA()
         }else{
-          Swal.fire({
-            icon: 'error',
-            title: 'Epaa...',
-            text: 'Rellena esas casillas ♥',
-          })
+          alertaErrorCasillas()
         }
       }
     }
     if(quiero === "PORT"){
-      if(nombre && apellido && quiero && plano && personas || animales && fondo && texto && total){
-        link = `https://api.whatsapp.com/send?phone=584123405104&text=Holaaa%20♥♥♥♥♥♥♥♥♥♥♥%20Mi%20nombre%20es%20${nombreApellido}%20,%20vivo%20en%20${apellido}%20.%20Quisiera%20pedirte%20una%20${quiero}%20con%20un%20plano%20de%20${plano}%20,%20con%20${personas}%20personas%20,%20con%20${animales}%20animales%20,%20con%20${fondo}%20,%20con%20${texto}%20texto%20,%20con%20un%20tamaño%20de%2010x15%20y%20tendria%20un%20estimado%20de%20${total}$%20♥♥`
-        Swal.fire({
-          title: 'Informacion Importante',
-          text: "El precio puede tener una pequeña variacion, por favor enviar foto a ilustrar despues de este mensaje ♥ gracias ♥",
-          icon: 'success',
-          showCancelButton: false,
-          cconfirmButtonColor: '#addbb2',
-          confirmButtonText: 'Enviar'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            window.open(link)
-          }
-        })
+      if(nombre && apellido && quiero && plano && fondo != "" && texto != "" && personas || animales){
+        link = `https://api.whatsapp.com/send?phone=584123405104&text=Holaaa%20♥♥♥♥♥♥♥♥♥♥♥%20Mi%20nombre%20es%20${nombre}%20,%20vivo%20en%20${apellido}%20.%20Quisiera%20pedirte%20una%20${quiero}%20con%20un%20plano%20de%20${plano}%20,%20con%20${personas}%20personas%20,%20con%20${animales}%20animales%20,%20con%20${fondo}%20,%20con%20${texto}%20texto%20,%20con%20un%20tamaño%20de%2010x15%20y%20tendria%20un%20estimado%20de%20${total}$%20♥♥`
+        alerta(link)
       }else{
         if(personas === 0 && animales === 0){
-          Swal.fire({
-            icon: 'error',
-            title: 'Epaa...',
-            text: 'Selecciona personas o animales ♥',
-          })
+          alertaErrorPA()
         }else{
-          Swal.fire({
-            icon: 'error',
-            title: 'Epaa...',
-            text: 'Rellena esas casillas ♥',
-          })
+          alertaErrorCasillas()
         }
       }
     }
   }
 
+  useEffect(()=>{
+    setLoading(false)
+  }, [])
+
   
   return (
   <Layout>
     <SEO title="Pedido" />
+      {loading ? (
+        <>
+        <div className="d-flex w-100 h-100 justify-content-center align-items-center">
+          <Loading/>
+        </div>
+        </>
+      ):(
+        <>
       <Image fileName="fondo3.PNG"/>
       <div style={{height: "100%"}} className={classes.divRow + " row d-flex justify-content-center align-items-center"}>
         <div className={classes.divForm + " col-10 p-3"}>
@@ -1136,7 +1129,7 @@ const SecondPage = () => {
             <div className="col-12 mt-3">
               <p className={classes.pInfoFondo}>Pulsa el titulo para mas informacion</p>
             <BootstrapTooltip title={textoFondo} placement="top-start">
-              <Typography className={classes.labelForm} gutterBottom>Desea ilustrar el fondo?</Typography>
+              <Typography noWrap={true} className={classes.labelForm} gutterBottom>Desea ilustrar el fondo?</Typography>
             </BootstrapTooltip>
 
             </div>
@@ -1206,7 +1199,9 @@ const SecondPage = () => {
           </div>
         </div>
       </div>
-
+        </>
+      )
+      }
   </Layout>
 )
 }

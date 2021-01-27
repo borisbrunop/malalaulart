@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react"
+import React, { useCallback, useState, useEffect } from "react"
 import { Link } from "gatsby"
 import "./custom.css"
 import Zoom from 'react-medium-image-zoom'
@@ -13,25 +13,18 @@ import SEO from "../components/seo"
 import Fade from 'react-reveal/Fade';
 import { makeStyles } from '@material-ui/core/styles';
 import Image from "../components/image"
-import ilus1 from "../images/ilus1.PNG"
-import ilus2 from "../images/ilus2.PNG"
-import ilus3 from "../images/ilus3.PNG"
-import ilus4 from "../images/ilus4.PNG"
-import ilus5 from "../images/ilus5.PNG"
-import ilus6 from "../images/ilus6.PNG"
-import ilus7 from "../images/ilus7.PNG"
-import ilus8 from "../images/ilus8.PNG"
-import ilus9 from "../images/ilus9.PNG"
-import ilus10 from "../images/ilus10.PNG"
-import ilus11 from "../images/ilus11.PNG"
-import ilus12 from "../images/ilus12.PNG"
-import ilus13 from "../images/ilus13.PNG"
 import { useHistory } from "react-router-dom";
 import InstagramIcon from '@material-ui/icons/Instagram';
 import IconButton from '@material-ui/core/IconButton';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import LazyLoad from 'react-lazyload';
+import Loading from "../components/loading.js"
+import Gallery from "../components/gallery.js"
+import promo2 from "../images/promo2.JPG"
+import promo from "../images/promo.JPG"
+import Swal from 'sweetalert2'
+
 
 
 
@@ -60,8 +53,20 @@ const useStyles = makeStyles((theme) => ({
     height: "100px",
     // backgroundColor: "#FDDBB1",
     // cursor: "pointer",
-    marginBottom: "20%",
+    marginBottom: "5%",
     marginTop: "20%",
+    [theme.breakpoints.down('sm')]: {
+      width: "100%",
+      height: "70px"
+    },
+    borderRadius: "20px",
+  },
+  divbuttonPromo: {
+    width: "70%",
+    height: "100px",
+    // backgroundColor: "#FDDBB1",
+    cursor: "pointer",
+    marginBottom: "20%",
     [theme.breakpoints.down('sm')]: {
       width: "100%",
       height: "70px"
@@ -116,12 +121,8 @@ const useStyles = makeStyles((theme) => ({
 
 const IndexPage = () =>{ 
   const classes = useStyles();
-  const ilust = [
-    {img: ilus1},{img: ilus2},{img: ilus3}, 
-    {img: ilus4},{img: ilus5},{img: ilus6},
-    {img: ilus7},{img: ilus8},{img: ilus9},
-    {img: ilus10},{img: ilus11},{img: ilus13}
-]
+  const [imgLoading, setImgLoading] = useState([]);
+  const [loading, setloading] = useState(true);
 
 const history = useHistory();
 
@@ -136,10 +137,59 @@ const history = useHistory();
     setIsZoomed(shouldZoom)
   }, [])
 
+  const handleImg = (id) => {
+    setImgLoading([...imgLoading, id])
+  }
+
+  const handlePromo = (e) => {
+    Swal.fire({
+      title: '<strong>PROMOS <3</strong>',
+      confirmButtonText: `Promo 1 :)`,
+      cancelButtonText: `Ninguna :(`,
+      denyButtonText: `Promo 2 :)`,
+      showCancelButton: true,
+      showDenyButton: true,
+      confirmButtonColor: '#a7d3af',
+      cancelButtonColor: '#fcb1a4',
+      denyButtonColor: '#a7d3af',
+      html:
+      `<img src="${promo}"/>`
+      + 
+      `<img src="${promo2}"/>` ,
+      backdrop: `
+      rgb(253, 202, 192)
+      no-repeat
+    `
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        let link = `https://api.whatsapp.com/send?phone=584123405104&text=Holaaa%20♥♥♥♥♥♥♥♥♥♥♥%20Quisiera%20pedirte%20la%20Promo%201%20,%20son%202%20CUADROS,%20con%202%20personas%20,%20con%20FNI%20,%20con%20Dedicatoria%20de%20texto%20,%20el%20material%20seria%20de%20MDF%20,%20con%20un%20tamaño%20de%2020x20%20y%20tendria%20un%20precio%20de%2040$%20♥♥`
+        window.open(link)
+        console.log("confirm")
+      }else if(result.isDenied){
+        let link = `https://api.whatsapp.com/send?phone=584123405104&text=Holaaa%20♥♥♥♥♥♥♥♥♥♥♥%20Quisiera%20pedirte%20la%20Promo%202%20,%20es%201%20CUADRO,%20con%202%20personas%20,%20con%20FNI%20,%20con%20Dedicatoria%20de%20texto%20,%20el%20material%20seria%20de%20MDF%20,%20con%20un%20tamaño%20de%2020x20%20y%20tendria%20un%20precio%20de%2025$%20♥♥`
+        window.open(link)
+        console.log("denied")
+      }
+    })
+  }
+
+  useEffect(()=>{
+    setloading(false)
+  }, [])
+
   return (
   <Layout>
     <SEO title="Malalaulart" />
-    <Image fileName='Background.PNG'/>
+    {loading ? (
+      <>
+        <div className="d-flex w-100 h-100 justify-content-center align-items-center">
+          <Loading/>
+        </div>
+        </>
+    ):(
+      <>
+      <Image fileName='Background.PNG'/>
       <div className={classes.fullSize + " w-100 m-0"}>
           <div className={classes.fullSize + " d-flex justify-content-center px-0 align-items-center"}>
           <Fade
@@ -201,7 +251,7 @@ const history = useHistory();
             duration={1000}
             distance="80px"
           >
-              <IconButton onClick={(e) =>  window.open("mailto:malalaulart@gmail", '_self')} aria-label="instagram">
+              <IconButton onClick={(e) =>  window.open("mailto:malalaulart@gmail.com", '_self')} aria-label="instagram">
                   <MailOutlineIcon className={classes.social}/>
               </IconButton>
           </Fade>
@@ -209,24 +259,16 @@ const history = useHistory();
             <div className="col-12 col-md-10 d-flex justify-content-center align-items-center">
               <Link className={classes.divbuttonForm + " slide d-flex justify-content-center align-items-center"} to="/page-2/">Realiza tu pedido aqui</Link> <br />
             </div>
-              {ilust.map((ilustra) => (
-                <Fade
-                  left
-                  duration={1000}
-                  distance="100px"
-                >
-                  <div className="col-6 col-md-4 col-lg-3 p-0">
-                    <LazyLoad>
-                    <Zoom>
-                      <img style={{width: "100%", marginBottom: "0px"}} src={ilustra.img}></img>
-                    </Zoom>
-                    </LazyLoad>
-                  </div>
-                </Fade>
-              ))}
+            <div className="col-12 col-md-10 d-flex justify-content-center align-items-center">
+              <p onClick={handlePromo} className={classes.divbuttonPromo + " slide d-flex justify-content-center align-items-center"}>Promo San Valentin</p>
+            </div>
+              <Gallery/>
             <p className={classes.pFooter}>♥ LLeva un Recuerdo especial siempre contigo ♥</p>
           </div>
       </div>
+      </>
+    )
+    }
   </Layout>
 )}
 

@@ -6,6 +6,9 @@ html {
   overflow-y: scroll;
   height: 100% !important;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
