@@ -25,8 +25,7 @@ import promo2 from "../images/promo2.JPG"
 import promo from "../images/promo.JPG"
 import Swal from 'sweetalert2'
 
-
-
+import { useStaticQuery, graphql } from "gatsby"
 
 
 
@@ -123,6 +122,7 @@ const IndexPage = () =>{
   const classes = useStyles();
   const [imgLoading, setImgLoading] = useState([]);
   const [loading, setloading] = useState(true);
+  const [logo, setLogo] = useState(false);
 
 const history = useHistory();
 
@@ -178,6 +178,10 @@ const history = useHistory();
     setloading(false)
   }, [])
 
+  const handleLogoLoad = (e) => {
+    setLogo(true)
+  }
+
   return (
   <Layout>
     <SEO title="Malalaulart" />
@@ -189,42 +193,50 @@ const history = useHistory();
         </>
     ):(
       <>
-      <Image fileName='Background.PNG'/>
+      <Image fileName="Background.PNG"/>
       <div className={classes.fullSize + " w-100 m-0"}>
           <div className={classes.fullSize + " d-flex justify-content-center px-0 align-items-center"}>
-          <Fade
-            left
-            duration={1000}
-            delay={800}
-            cascade
-            distance="50px"
-          >
-            <img src={Logo} className={classes.logoResponsive}></img>
-          </Fade>
-          <Fade
-            left
-            duration={800}
-            delay={500}
-            distance="50px"
-          >
-          <p className={classes.venezuelaPhone}>Venezuela: +58 412-340-5104</p>
-          </Fade>
-          <Fade
-            left
-            duration={800}
-            delay={700}
-            distance="50px"
-          >
-          <p className={classes.panamaPhone}>Panama: +507 6983-8048</p>
-          </Fade>
-          <Fade
-            left
-            duration={800}
-            delay={900}
-            distance="50px"
-          >
-          <p className={classes.byMarialaura}>by Marialaura Matteo</p>
-          </Fade>
+            
+            <div style={{display: logo? 'flex': 'none'}} >
+            <Fade
+              left
+              duration={1000}
+              delay={800}
+              cascade
+              distance="50px"
+            >
+              <img onLoad={handleLogoLoad} src={Logo} className={classes.logoResponsive}></img>
+            </Fade>
+            </div>
+              { !logo &&
+                  <div className="d-flex justify-content-center px-0 align-items-center">
+                      <Loading/>
+                  </div>
+              }
+            <Fade
+              left
+              duration={800}
+              delay={500}
+              distance="50px"
+            >
+            <p className={classes.venezuelaPhone}>Venezuela: +58 412-340-5104</p>
+            </Fade>
+            <Fade
+              left
+              duration={800}
+              delay={700}
+              distance="50px"
+            >
+            <p className={classes.panamaPhone}>Panama: +507 6983-8048</p>
+            </Fade>
+            <Fade
+              left
+              duration={800}
+              delay={900}
+              distance="50px"
+            >
+            <p className={classes.byMarialaura}>by Marialaura Matteo</p>
+            </Fade>
           </div>
           <div className={classes.fullSize + " d-flex justify-content-center row m-3 m-sm-4 m-md-5"}>
             <div className=" mt-5 col-12 d-flex justify-content-center align-items-center">

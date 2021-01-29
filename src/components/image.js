@@ -34,6 +34,8 @@ const Image = ({fileName , className}) => {
   const fluid = allImageSharp.nodes.find(n => n.fluid.originalName === fileName)
     .fluid
 
+    // console.log(allImageSharp.nodes)
+
   return (
     <BackgroundImage
       Tag="section"
