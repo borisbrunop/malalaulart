@@ -256,10 +256,10 @@ const history = useHistory();
               </IconButton>
           </Fade>
             </div>
-            <div className="col-12 col-md-10 d-flex justify-content-center align-items-center">
+            <div className="col-12 col-md-10  d-flex justify-content-center align-items-center">
               <Link className={classes.divbuttonForm + " slide d-flex justify-content-center align-items-center"} to="/page-2/">Realiza tu pedido aqui</Link> <br />
             </div>
-            <div className="col-12 col-md-10 d-flex justify-content-center align-items-center">
+            <div className="col-12 col-md-10  d-flex justify-content-center align-items-center">
               <p onClick={handlePromo} className={classes.divbuttonPromo + " slide d-flex justify-content-center align-items-center"}>Promo San Valentin</p>
             </div>
               <Gallery/>

@@ -3,24 +3,25 @@ import LazyLoad from 'react-lazyload';
 import Fade from 'react-reveal/Fade';
 import Zoom from 'react-medium-image-zoom'
 import ilus1 from "../images/ilus1.JPG"
-import ilus2 from "../images/ilus2.PNG"
-import ilus3 from "../images/ilus3.PNG"
-import ilus4 from "../images/ilus4.PNG"
-import ilus5 from "../images/ilus5.PNG"
-import ilus6 from "../images/ilus6.PNG"
-import ilus7 from "../images/ilus7.PNG"
-import ilus8 from "../images/ilus8.PNG"
-import ilus9 from "../images/ilus9.PNG"
-import ilus10 from "../images/ilus10.PNG"
-import ilus11 from "../images/ilus11.PNG"
-import ilus12 from "../images/ilus12.PNG"
-import ilus13 from "../images/ilus13.PNG"
+import ilus2 from "../images/ilus2.JPG"
+import ilus3 from "../images/ilus3.JPG"
+import ilus4 from "../images/ilus4.JPG"
+import ilus5 from "../images/ilus5.JPG"
+import ilus6 from "../images/ilus6.JPG"
+import ilus7 from "../images/ilus7.JPG"
+import ilus8 from "../images/ilus8.JPG"
+import ilus9 from "../images/ilus9.JPG"
+import ilus10 from "../images/ilus10.JPG"
+import ilus11 from "../images/ilus11.JPG"
+import ilus12 from "../images/ilus12.JPG"
+import ilus13 from "../images/ilus13.JPG"
 import Loading from "./loading.js"
 
 
 const Gallery = (e) =>{
     const [isLoading, setIsLoading] = useState([]);
     const [ilustLoad1, setIlustLoad1] = useState(true);
+    const [loadImg, setLoadImg] = useState("");
     
     // const handleImg = (id) => {
     //     setImgLoading([...imgLoading, id])

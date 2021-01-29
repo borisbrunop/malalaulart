@@ -37,6 +37,7 @@ label{
 
 
 	.slide {  
+		font-family: 'Courier Prime', monospace;
 		color: #f7be78;
 		transition: 0.25s;
 		background: none;

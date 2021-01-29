@@ -933,7 +933,7 @@ const SecondPage = () => {
   const alerta = (link) => {
     Swal.fire({
       title: 'Informacion Importante',
-      text: "El precio puede tener una variacion, por favor enviar foto a ilustrar despues de este mensaje, gracias ❤️",
+      text: "El precio puede tener una pequeña variacion, por favor enviar foto a ilustrar despues de este mensaje, gracias ❤️",
       icon: 'success',
       showCancelButton: false,
       cconfirmButtonColor: '#addbb2',
