@@ -44,51 +44,51 @@ const Gallery = (e) =>{
 
     const handleLoad = (e) => {
         console.log('loaded');
-        setIlust1(false);
+        setIlust1(true);
     }
     const handleIlus2 = (e) => {
         console.log('loaded');
-        setIlust2(false);
+        setIlust2(true);
     }
     const handleIlus3 = (e) => {
         console.log('loaded');
-        setIlust3(false);
+        setIlust3(true);
     }
     const handleIlus4 = (e) => {
         console.log('loaded');
-        setIlust4(false);
+        setIlust4(true);
     }
     const handleIlus5 = (e) => {
         console.log('loaded');
-        setIlust5(false);
+        setIlust5(true);
     }
     const handleIlus6 = (e) => {
         console.log('loaded');
-        setIlust6(false);
+        setIlust6(true);
     }
     const handleIlus7 = (e) => {
         console.log('loaded');
-        setIlust7(false);
+        setIlust7(true);
     }
     const handleIlus8 = (e) => {
         console.log('loaded');
-        setIlust8(false);
+        setIlust8(true);
     }
     const handleIlus9 = (e) => {
         console.log('loaded');
-        setIlust9(false);
+        setIlust9(true);
     }
     const handleIlus10 = (e) => {
         console.log('loaded');
-        setIlust10(false);
+        setIlust10(true);
     }
     const handleIlus11 = (e) => {
         console.log('loaded');
-        setIlust11(false);
+        setIlust11(true);
     }
     const handleIlus13 = (e) => {
         console.log('loaded');
-        setIlust13(false);
+        setIlust13(true);
     }
 
 
