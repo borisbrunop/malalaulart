@@ -20,6 +20,10 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Swal from 'sweetalert2'
 import { TramRounded } from "@material-ui/icons"
 import Loading from "../components/loading.js"
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 const useStyles = makeStyles((theme) => ({
   divForm: {
@@ -152,7 +156,10 @@ const SecondPage = () => {
   const [plano, setPlano] = useState("")
   const [texto, setTexto] = useState("")
   const [nombre, setNombre] = useState("")
-  const [apellido, setApellido] = useState("")
+  const [pais, setPais] = useState({
+    existe: false,
+    name: ""
+  })
   const [tamano, setTamano] = useState("20x20")
   const [ilustD, setIlustD] = useState(false)
   const [cuadro, setCuadro] = useState(false)
@@ -980,8 +987,8 @@ const SecondPage = () => {
       alertaErrorInteres()
     }
     if(quiero === "ILUST"){
-      if(nombre && apellido && quiero && plano && fondo != "" && texto != "" && personas || animales ){
-        link = `https://api.whatsapp.com/send?phone=584123405104&text=Holaaa%20♥♥♥♥♥♥♥♥♥♥♥%20Mi%20nombre%20es%20${nombre}%20,%20vivo%20en%20${apellido}%20.%20Quisiera%20pedirte%20una%20${quiero}%20con%20un%20plano%20de%20${plano}%20,%20con%20${personas}%20personas%20,%20con%20${animales}%20animales%20,%20con%20${fondo}%20,%20con%20${texto}%20texto%20y%20tendria%20un%20estimado%20de%20${total}$%20♥♥`
+      if(nombre && pais.existe && quiero && plano && fondo != "" && texto != "" && personas || animales ){
+        link = `https://api.whatsapp.com/send?phone=584123405104&text=Holaaa%20♥♥♥♥♥♥♥♥♥♥♥%20Mi%20nombre%20es%20${nombre}%20,%20vivo%20en%20${pais.name}%20.%20Quisiera%20pedirte%20una%20${quiero}%20con%20un%20plano%20de%20${plano}%20,%20con%20${personas}%20personas%20,%20con%20${animales}%20animales%20,%20con%20${fondo}%20,%20con%20${texto}%20texto%20y%20tendria%20un%20estimado%20de%20${total}$%20♥♥`
         alerta(link)
       }else{
         if(personas === 0 && animales === 0){
@@ -992,8 +999,8 @@ const SecondPage = () => {
       }
     }
     if(quiero === "CUADRO"){
-      if(nombre && apellido && quiero && plano && fondo != "" && texto != "" && tamano && personas || animales ){
-        link = `https://api.whatsapp.com/send?phone=584123405104&text=Holaaa%20♥♥♥♥♥♥♥♥♥♥♥%20Mi%20nombre%20es%20${nombre}%20,%20vivo%20en%20${apellido}%20.%20Quisiera%20pedirte%20una%20${quiero}%20con%20un%20plano%20de%20${plano}%20,%20con%20${personas}%20personas%20,%20con%20${animales}%20animales%20,%20con%20${fondo}%20,%20con%20${texto}%20texto%20,%20el%20material%20seria%20de%20MDF%20,%20con%20un%20tamaño%20de%20${tamano}%20y%20tendria%20un%20estimado%20de%20${total}$%20♥♥`
+      if(nombre && pais.existe && quiero && plano && fondo != "" && texto != "" && tamano && personas || animales ){
+        link = `https://api.whatsapp.com/send?phone=584123405104&text=Holaaa%20♥♥♥♥♥♥♥♥♥♥♥%20Mi%20nombre%20es%20${nombre}%20,%20vivo%20en%20${pais.name}%20.%20Quisiera%20pedirte%20una%20${quiero}%20con%20un%20plano%20de%20${plano}%20,%20con%20${personas}%20personas%20,%20con%20${animales}%20animales%20,%20con%20${fondo}%20,%20con%20${texto}%20texto%20,%20el%20material%20seria%20de%20MDF%20,%20con%20un%20tamaño%20de%20${tamano}%20y%20tendria%20un%20estimado%20de%20${total}$%20♥♥`
         alerta(link)
       }else{
         if(personas === 0 && animales === 0){
@@ -1004,8 +1011,8 @@ const SecondPage = () => {
       }
     }
     if(quiero === "PORT"){
-      if(nombre && apellido && quiero && plano && fondo != "" && texto != "" && personas || animales){
-        link = `https://api.whatsapp.com/send?phone=584123405104&text=Holaaa%20♥♥♥♥♥♥♥♥♥♥♥%20Mi%20nombre%20es%20${nombre}%20,%20vivo%20en%20${apellido}%20.%20Quisiera%20pedirte%20una%20${quiero}%20con%20un%20plano%20de%20${plano}%20,%20con%20${personas}%20personas%20,%20con%20${animales}%20animales%20,%20con%20${fondo}%20,%20con%20${texto}%20texto%20,%20con%20un%20tamaño%20de%2010x15%20y%20tendria%20un%20estimado%20de%20${total}$%20♥♥`
+      if(nombre && pais.existe && quiero && plano && fondo != "" && texto != "" && personas || animales){
+        link = `https://api.whatsapp.com/send?phone=584123405104&text=Holaaa%20♥♥♥♥♥♥♥♥♥♥♥%20Mi%20nombre%20es%20${nombre}%20,%20vivo%20en%20${pais.name}%20.%20Quisiera%20pedirte%20una%20${quiero}%20con%20un%20plano%20de%20${plano}%20,%20con%20${personas}%20personas%20,%20con%20${animales}%20animales%20,%20con%20${fondo}%20,%20con%20${texto}%20texto%20,%20con%20un%20tamaño%20de%2010x15%20y%20tendria%20un%20estimado%20de%20${total}$%20♥♥`
         alerta(link)
       }else{
         if(personas === 0 && animales === 0){
@@ -1035,14 +1042,28 @@ const SecondPage = () => {
         <>
       <Image fileName="fondo3.PNG"/>
       <div style={{height: "100%"}} className={classes.divRow + " row d-flex justify-content-center align-items-center"}>
-        <div className={classes.divForm + " col-10 p-3"}>
+        <div className={classes.divForm + " scrollbar col-10 p-3"}>
           <div className="row d-flex justify-content-center">
             <div className="col-10">
               <TextField onChange={(e)=> setNombre(e.target.value)} className={classes.textField} fullWidth id="standard-basic" label="Nombre y Apellido" />
             </div>
             <div className="col-10 mt-2">
-              <TextField onChange={(e)=> setApellido(e.target.value)} fullWidth id="standard-basic" label="Pais" />
+            <FormControl fullWidth className={classes.formControl}>
+              <InputLabel id="demo-simple-select-label">Pais</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="pais"
+                value={pais.name}
+                onChange={(e) => setPais({existe: true , name: e.target.value})}
+              >
+                <MenuItem value={"Venezuela"}>Venezuela</MenuItem>
+                <MenuItem disabled value={"Panama"}>Panama</MenuItem>
+                <MenuItem value={"Otro"}>Otro</MenuItem>
+              </Select>
+            </FormControl>
             </div>
+          {/* {pais.existe && 
+            <> */}
             <div className="col-12 mt-4">
               <p className={classes.labelForm}>Estoy interesado en ...</p>
             </div>
@@ -1186,6 +1207,8 @@ const SecondPage = () => {
             </div>
             </>
             }
+          {/* </>
+          } */}
           </div>
         </div>
         <div className={classes.divTotal}>

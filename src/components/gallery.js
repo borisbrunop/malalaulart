@@ -44,51 +44,51 @@ const Gallery = (e) =>{
 
     const handleLoad = (e) => {
         console.log('loaded');
-        setIlust1(true);
+        setIlust1(false);
     }
     const handleIlus2 = (e) => {
         console.log('loaded');
-        setIlust2(true);
+        setIlust2(false);
     }
     const handleIlus3 = (e) => {
         console.log('loaded');
-        setIlust3(true);
+        setIlust3(false);
     }
     const handleIlus4 = (e) => {
         console.log('loaded');
-        setIlust4(true);
+        setIlust4(false);
     }
     const handleIlus5 = (e) => {
         console.log('loaded');
-        setIlust5(true);
+        setIlust5(false);
     }
     const handleIlus6 = (e) => {
         console.log('loaded');
-        setIlust6(true);
+        setIlust6(false);
     }
     const handleIlus7 = (e) => {
         console.log('loaded');
-        setIlust7(true);
+        setIlust7(false);
     }
     const handleIlus8 = (e) => {
         console.log('loaded');
-        setIlust8(true);
+        setIlust8(false);
     }
     const handleIlus9 = (e) => {
         console.log('loaded');
-        setIlust9(true);
+        setIlust9(false);
     }
     const handleIlus10 = (e) => {
         console.log('loaded');
-        setIlust10(true);
+        setIlust10(false);
     }
     const handleIlus11 = (e) => {
         console.log('loaded');
-        setIlust11(true);
+        setIlust11(false);
     }
     const handleIlus13 = (e) => {
         console.log('loaded');
-        setIlust13(true);
+        setIlust13(false);
     }
 
 
@@ -111,7 +111,7 @@ const Gallery = (e) =>{
                 </div>
                 </Fade>
                 { !ilust1 &&
-                    <div className="col-6 d-flex w-100 h-100 justify-content-center align-items-center">
+                    <div className="col-6 col-md-4 col-lg-3  d-flex justify-content-center align-items-center">
                         <Loading/>
                     </div>
                 }
@@ -132,7 +132,7 @@ const Gallery = (e) =>{
                 </div>
                 </Fade>
                 { !ilust2 &&
-                    <div className="col-6 d-flex w-100 h-100 justify-content-center align-items-center">
+                    <div className="col-6 col-md-4 col-lg-3  d-flex  justify-content-center align-items-center">
                         <Loading/>
                     </div>
                 }
@@ -153,7 +153,7 @@ const Gallery = (e) =>{
                 </div>
                 </Fade>
                 { !ilust3 &&
-                    <div className="col-6 d-flex w-100 h-100 justify-content-center align-items-center">
+                    <div className="col-6 col-md-4 col-lg-3  d-flex  justify-content-center align-items-center">
                         <Loading/>
                     </div>
                 }
@@ -174,7 +174,7 @@ const Gallery = (e) =>{
                 </div>
                 </Fade>
                 { !ilust4 &&
-                    <div className="col-6 d-flex w-100 h-100 justify-content-center align-items-center">
+                    <div className="col-6 col-md-4 col-lg-3  d-flex  justify-content-center align-items-center">
                         <Loading/>
                     </div>
                 }
@@ -195,7 +195,7 @@ const Gallery = (e) =>{
                 </div>
                 </Fade>
                 { !ilust5 &&
-                    <div className="col-6 d-flex w-100 h-100 justify-content-center align-items-center">
+                    <div className="col-6 col-md-4 col-lg-3  d-flex  justify-content-center align-items-center">
                         <Loading/>
                     </div>
                 }
@@ -216,7 +216,7 @@ const Gallery = (e) =>{
                 </div>
                 </Fade>
                 { !ilust6 &&
-                    <div className="col-6 d-flex w-100 h-100 justify-content-center align-items-center">
+                    <div className="col-6 col-md-4 col-lg-3  d-flex  justify-content-center align-items-center">
                         <Loading/>
                     </div>
                 }
@@ -237,7 +237,7 @@ const Gallery = (e) =>{
                 </div>
                 </Fade>
                 { !ilust7 &&
-                    <div className="col-6 d-flex w-100 h-100 justify-content-center align-items-center">
+                    <div className="col-6 col-md-4 col-lg-3  d-flex  justify-content-center align-items-center">
                         <Loading/>
                     </div>
                 }
@@ -258,7 +258,7 @@ const Gallery = (e) =>{
                 </div>
                 </Fade>
                 { !ilust8 &&
-                    <div className="col-6 d-flex w-100 h-100 justify-content-center align-items-center">
+                    <div className="col-6 col-md-4 col-lg-3  d-flex  justify-content-center align-items-center">
                         <Loading/>
                     </div>
                 }
@@ -279,7 +279,7 @@ const Gallery = (e) =>{
                 </div>
                 </Fade>
                 { !ilust9 &&
-                    <div className="col-6 d-flex w-100 h-100 justify-content-center align-items-center">
+                    <div className="col-6 col-md-4 col-lg-3  d-flex  justify-content-center align-items-center">
                         <Loading/>
                     </div>
                 }
@@ -300,7 +300,7 @@ const Gallery = (e) =>{
                 </div>
                 </Fade>
                 { !ilust10 &&
-                    <div className="col-6 d-flex w-100 h-100 justify-content-center align-items-center">
+                    <div className="col-6 col-md-4 col-lg-3 d-flex  justify-content-center align-items-center">
                         <Loading/>
                     </div>
                 }
@@ -321,7 +321,7 @@ const Gallery = (e) =>{
                 </div>
                 </Fade>
                 { !ilust11 &&
-                    <div className="col-6 d-flex w-100 h-100 justify-content-center align-items-center">
+                    <div className="col-6 col-md-4 col-lg-3  d-flex  justify-content-center align-items-center">
                         <Loading/>
                     </div>
                 }
@@ -342,7 +342,7 @@ const Gallery = (e) =>{
                 </div>
                 </Fade>
                 { !ilust13 &&
-                    <div className="col-6 d-flex w-100 h-100 justify-content-center align-items-center">
+                    <div className="col-6 col-md-4 col-lg-3  d-flex  justify-content-center align-items-center">
                         <Loading/>
                     </div>
                 }
