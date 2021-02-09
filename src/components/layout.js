@@ -5,11 +5,11 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import React from "react"
+import React, { useEffect } from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
-
+import ReactGA from 'react-ga';
 
 import "./layout.css"
 import Background from "../images/Background.PNG"
@@ -24,6 +24,11 @@ const Layout = ({ children }) => {
       }
     }
   `)
+
+  useEffect(() => {
+    ReactGA.initialize('UA-188519923-1');
+    ReactGA.pageview(window.location.pathname)
+  }, [])
 
   const theme = createMuiTheme({
     palette: {

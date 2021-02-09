@@ -24,6 +24,8 @@ import Gallery from "../components/gallery.js"
 import promo2 from "../images/promo2.JPG"
 import promo from "../images/promo.JPG"
 import Swal from 'sweetalert2'
+import ReactGA from 'react-ga';
+
 
 import { useStaticQuery, graphql } from "gatsby"
 
@@ -140,6 +142,12 @@ const history = useHistory();
   const handleImg = (id) => {
     setImgLoading([...imgLoading, id])
   }
+  const analytics = () => {
+    ReactGA.event({
+      category: 'Formulario',
+      action: 'click'
+    })
+  }
 
   const handlePromo = (e) => {
     Swal.fire({
@@ -176,6 +184,8 @@ const history = useHistory();
 
   useEffect(()=>{
     setloading(false)
+    // ReactGA.initialize('UA-188519923-1');
+    // ReactGA.pageview(window.location.pathname)
   }, [])
 
   const handleLogoLoad = (e) => {
@@ -268,12 +278,12 @@ const history = useHistory();
               </IconButton>
           </Fade>
             </div>
-            <div className="col-12 col-md-10  d-flex justify-content-center align-items-center">
-              <Link className={classes.divbuttonForm + " slide d-flex justify-content-center align-items-center"} to="/page-2/">Realiza tu pedido aqui</Link> <br />
+            <div className="col-12 col-md-10 mb-5  d-flex justify-content-center align-items-center">
+              <Link onClick={analytics} className={classes.divbuttonForm + " slide d-flex justify-content-center align-items-center"} to="/page-2/">Realiza tu pedido aqui</Link> <br />
             </div>
-            <div className="col-12 col-md-10  d-flex justify-content-center align-items-center">
+            {/* <div className="col-12 col-md-10  d-flex justify-content-center align-items-center">
               <p onClick={handlePromo} className={classes.divbuttonPromo + " slide d-flex justify-content-center align-items-center"}>Promo San Valentin</p>
-            </div>
+            </div> */}
               <Gallery/>
             <p className={classes.pFooter}>♥ LLeva un Recuerdo especial siempre contigo ♥</p>
           </div>
